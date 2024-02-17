@@ -1,0 +1,50 @@
+@font-face {
+    font-family: 'DM-Sans'; /* Use the name you want to reference the font with */
+    src: url('sparxhelperfont.ttf') format('truetype'); /* Use the actual filename of your font file */
+    font-weight: 900;
+}
+
+body{
+    width: 310px;
+    height: 320px;
+    padding: 0px;
+    margin: 0;
+    background: #eef4fe
+}
+
+header{
+    color: white;
+    font-family: 'DM-Sans';
+    font-size: large;
+}
+.banner{
+    padding: 10px;
+    width: 100%;
+    background-color: #489bfb;
+}
+.nowrap{
+    font-size: auto;
+    text-align: center;
+}
+.griddy{
+    font-family: 'DM-Sans';
+    display: grid;
+    grid-template-columns: repeat(auto-fill, 50px);
+    gap: 10px; 
+}
+.roundedsquare{
+    font-size: 12px;
+    height: 50px;
+    width: 50px;
+    text-align: center;
+    background-color: #2e3c71;
+    border-radius: 10%;
+    margin: 10px;
+    transition: scale 0.2s, translation 0.2s;
+}
+.roundedsquare:hover{
+    scale: 120%;
+}
+.row{
+    display: flex;
+}
