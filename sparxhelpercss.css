@@ -27,13 +27,13 @@ header{
     text-align: center;
 }
 .griddy{
+    font-size: 12px;
     font-family: 'DM-Sans';
     display: grid;
     grid-template-columns: repeat(auto-fill, 50px);
     gap: 10px; 
 }
 .roundedsquare{
-    font-size: 12px;
     height: 50px;
     width: 50px;
     text-align: center;
@@ -42,9 +42,44 @@ header{
     margin: 10px;
     transition: scale 0.2s, translation 0.2s;
 }
+.backbutton{
+    height: 40px;
+    width: 40px;
+    text-align: center;
+    background-color: #2e3c71;
+    border-radius: 10%;
+    font-size: 40px;
+    float: right; 
+    display: flex; 
+    align-items: center; 
+    justify-content: center;
+    transition: scale 0.2s, translation 0.2s;
+    margin:10px;
+}
 .roundedsquare:hover{
     scale: 120%;
 }
 .row{
     display: flex;
+}
+
+.overlay {
+    font-family: 'DM-Sans';
+    position: fixed;
+    top: 0;
+    right: -100%; /* Start off-screen to the right */
+    width: 100%;
+    height: 100%;
+    background-color: #eef4fe; /* Semi-transparent overlay */
+    z-index: 999; /* Ensure it's on top of other content */
+    transition: right 0.5s; /* Use transition for smooth movement */
+  }
+  
+  .overlayactive {
+    right: 0; /* Move to the right to become visible */
+  }
+
+.padding{
+    margin: 20px;
+    font-family: 'DM-Sans';
 }
