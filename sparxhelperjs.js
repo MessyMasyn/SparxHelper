@@ -3,14 +3,27 @@ RadiusDiameter: (x) => x*2,
 DiameterRadius: (x) => x/2,
 RadiusCircumference: (x) => (x*2)*Math.PI,
 CircumferenceRadius: (x) => x/(2*Math.PI),
-RadiusArea: (x) => Math.PI * (x^2),
-AreaRadius: (x) => sqrt(x/Math.PI),
+RadiusArea: (x) => Math.PI * (x*x),
+AreaRadius: (x) => Math.sqrt(x/Math.PI),
 DiameterCircumference: (x) => x*Math.PI,
 CircumferenceDiameter: (x) => x/Math.PI,
 DiameterArea: (x) => Math.PI * ((x/2)**2),
-AreaDiameter: (x) => sqrt((4*x)/Math.PI),
-CircumferenceArea: (x) => (x^2)/(4*Math.PI),
-AreaCircumference: (x) => sqrt(x*Math.PI) * 2
+AreaDiameter: (x) => Math.sqrt((4*x)/Math.PI),
+CircumferenceArea: (x) => (x*x)/(4*Math.PI),
+AreaCircumference: (x) => Math.sqrt(x*Math.PI) * 2,
+
+SurfaceAreaHeightVolume: (x,y) => 
+SurfaceAreaDiameter: (x) => 
+SurfaceAreaHeight: (x) => 
+VolumeSurfaceArea: (x) => 
+VolumeDiameter: (x) => 
+VolumeHeight: (x) => 
+DiameterSurfaceArea: (x) => 
+DiameterVolume: (x) => 
+DiameterHeight: (x) => 
+HeightSurfaceArea: (x) => 
+HeightVolume: (x) => 
+HeightDiameter: (x) => 
 }
 
 const overlayDiv = document.getElementById("overlay-div");
@@ -23,7 +36,7 @@ BackButton.addEventListener('click', () =>{
   overlayDiv.classList.remove("overlayactive");
 })
 
-document.addEventListener('change', function(event) {
+function screenthing(event){
   if (event.target.tagName === 'SELECT' | event.target.id == 'textinput') {
     if (inputselect.value == solveselect.value){
       SolutionText.innerHTML = 1
@@ -31,8 +44,21 @@ document.addEventListener('change', function(event) {
     }
     let newstring = [inputselect.value, solveselect.value].join('')
     console.log(newstring)
-    SolutionText.innerHTML = Formulas[newstring](Textinput.value)
+    let number = Formulas[newstring](Textinput.value)
+    console.log(number)
+    SolutionText.innerHTML = number.toString().replace(/e\+(\d+)/, 'x10^$1')
+    console.log(SolutionText.innerHTML)
   }
+}
+document.addEventListener('change', function(event) {
+  if (event.target.tagName === 'SELECT') {
+    screenthing(event)
+  }
+});
+
+Textinput.addEventListener('input', function(event) {
+  Textinput.value = Textinput.value.replace(/[^0-9.]+|(?<=\..*)\./g, "")
+  screenthing(event)
 });
 
 var ScreenDisplayed = false
@@ -57,6 +83,10 @@ function DisplayScreen(butname){
   overlayDiv.classList.add("overlayactive");
   const inputselect = document.getElementById("inputselect");
   const solveselect = document.getElementById("solveselect")
+
+  inputselect.innerHTML = ''
+  solveselect.innerHTML = ''
+
   switch (butname) {
     case "Circle Formula":
       InsertDivInDiv(inputselect, "option", "Radius", "Radius")
@@ -70,7 +100,15 @@ function DisplayScreen(butname){
       InsertDivInDiv(solveselect, "option", "Area", "Area")
       break;
     case "Cylinder Formula":
+      InsertDivInDiv(inputselect, "option", "SurfaceArea", "Surface Area")
+      InsertDivInDiv(inputselect, "option", "Volume", "Volume")
+      InsertDivInDiv(inputselect, "option", "Diameter", "Circumference")
+      InsertDivInDiv(inputselect, "option", "Height", "Area")
 
+      InsertDivInDiv(solveselect, "option", "SurfaceArea", "Surface Area")
+      InsertDivInDiv(solveselect, "option", "Volume", "Volume")
+      InsertDivInDiv(solveselect, "option", "Diameter", "Circumference")
+      InsertDivInDiv(solveselect, "option", "Height", "Area")
     default:
       break;
   }
